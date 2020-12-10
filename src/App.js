@@ -1,10 +1,18 @@
-import './App.css';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-function App() {
+import Header from './components/Header';
+import Search from './components/Search';
+import MovieDetail from './components/MovieDetail';
+import MovieList from './components/MovieList';
+
+const App = () => {
   return (
-    <div className="App">
-    </div>
-  );
+    <Switch>
+      <Route path="/" component={MovieList} />
+      <Route path="/movies/:movieID" component={MovieDetail} />
+    </Switch>
+  )
 }
 
 export default App;
