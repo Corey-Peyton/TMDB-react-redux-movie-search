@@ -208,7 +208,7 @@ export const MoviesSection = styled.section`
     flex-wrap: wrap;
   }
 
-  .no-books {
+  .no-movies {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
@@ -235,7 +235,7 @@ export const MoviesSection = styled.section`
   }
 
   @media (max-width: 700px) {
-    .no-books h1 {
+    .no-movies h1 {
       font-size: 1.2rem;
     }
   }

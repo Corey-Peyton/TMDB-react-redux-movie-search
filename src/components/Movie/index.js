@@ -12,12 +12,11 @@ const MovieBlock = (props) => {
       </div>
       <div className="movie-data">
         <div className="main-info">
-          <h3>{title}</h3>
-        </div>
-        <div className="details">
-          <Link to={`/movies/${encodeURIComponent(id)}`}>
-            Details <i className="fas fa-info-circle"></i>
-          </Link>
+          <h3>
+            <Link to={`/movies/${encodeURIComponent(id)}`}>
+              {title}
+            </Link>
+          </h3>
         </div>
       </div>
     </MovieBlockStyled>
