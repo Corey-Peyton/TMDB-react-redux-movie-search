@@ -28,11 +28,9 @@ const Main = () => {
         setError('Error occurred!');
       }
 
-      console.log(response);
-
       const movies = response.data.results.map((movie) => {
         const thumbnailUrl = movie.poster_path
-          ? movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
           : "https://media.gettyimages.com/photos/old-film-perforated-celluloid-picture-id155278297?s=2048x2048";
 
         return {
@@ -46,6 +44,7 @@ const Main = () => {
       setLoading(false);
       localStorage.setItem('movies', JSON.stringify(movies));
       localStorage.setItem('query', query);
+      console.log(response);
     });
   }
 

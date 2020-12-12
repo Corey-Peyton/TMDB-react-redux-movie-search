@@ -15,7 +15,7 @@ const MovieDetails = (props) => {
       setLoading(true);
       await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a1279933de606b4374a2c93a1d0127a9&query=${props.match.params.id}`).then(({ data: response }) => {
         const thumbnailUrl = response.poster_path
-          ? response.poster_path
+          ? `https://image.tmdb.org/t/p/w500/${response.poster_path}`
           : "https://media.gettyimages.com/photos/old-film-perforated-celluloid-picture-id155278297?s=2048x2048";
 
         let genres = "";
@@ -38,6 +38,7 @@ const MovieDetails = (props) => {
 
         setMovie(movieLoaded);
         setLoading(false);
+        console.log(response);
       });
     }
 

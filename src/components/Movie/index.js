@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MovieBlock as MovieBlockStyled } from './styles';
 
 const MovieBlock = (props) => {
-  const { id, thumbnailUrl, title } = props.movie;
+  const { id, thumbnailUrl, title, vote_average } = props.movie;
 
   return (
     <MovieBlockStyled>
@@ -12,6 +12,7 @@ const MovieBlock = (props) => {
       </div>
       <div className="movie-data">
         <div className="main-info">
+          <h4>{vote_average}</h4>
           <h3>
             <Link to={`/movies/${encodeURIComponent(id)}`}>
               {title}
