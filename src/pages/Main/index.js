@@ -37,6 +37,7 @@ const Main = () => {
           id: movie.id,
           title: movie.title,
           thumbnailUrl,
+          rating: movie.vote_average,
         };
       });
 

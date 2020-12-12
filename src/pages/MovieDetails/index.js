@@ -18,27 +18,17 @@ const MovieDetails = (props) => {
           ? `https://image.tmdb.org/t/p/w500/${response.poster_path}`
           : "https://media.gettyimages.com/photos/old-film-perforated-celluloid-picture-id155278297?s=2048x2048";
 
-        let genres = "";
-        if(response.genre_ids) {
-          genres = response.genre_ids.map(id => {
-            const item = genres.find(item => item.id === id);
-            return item ? item.name : null;
-          })
-          .join(", ");
-        }
-
         const movieLoaded = {
           id: response.id,
           title: response.title,
           description: response.overview,
           thumbnailUrl,
           rating: response.vote_average,
-          genres,
         }
 
         setMovie(movieLoaded);
         setLoading(false);
-        console.log(response);
+        console.log(movie);
       });
     }
 
@@ -46,7 +36,7 @@ const MovieDetails = (props) => {
   }, [props.match.params.id]);
 
   return (
-    <>
+    <>    
       {loading ? (
         <Loading />
       ) : (
@@ -67,9 +57,6 @@ const MovieDetails = (props) => {
                 </div>
                 <div className="stat-row">
                   <label>Rating:</label> <span>{movie.rating}</span>
-                </div>
-                <div className="stat-row">
-                  <label>Genres</label> <span>{movie.genres}</span>
                 </div>
               </div>
             </DetailBlock>

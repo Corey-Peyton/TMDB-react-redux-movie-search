@@ -54,8 +54,8 @@ export const Container = styled.div`
 
 export const DetailBlock = styled.aside`
   background-color: var(--white);
-  padding: 1rem;
-  width: 25%;
+  padding: 0rem;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@ export const DetailBlock = styled.aside`
     display: flex;
 
     img {
-      width: 145px;
+      width: 100%;
       height: 215px;
     }
 
