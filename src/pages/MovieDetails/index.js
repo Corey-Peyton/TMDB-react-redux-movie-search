@@ -13,7 +13,9 @@ const MovieDetails = (props) => {
   useEffect(() => {
     async function fetchMovie() {
       setLoading(true);
-      await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a1279933de606b4374a2c93a1d0127a9&query=${props.match.params.id}`).then(({ data: response }) => {
+      //`https://api.themoviedb.org/3/movie/${props.match.params.movie_id}?api_key=a1279933de606b4374a2c93a1d0127a9`
+      await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movie_id}?api_key=a1279933de606b4374a2c93a1d0127a9`)
+        .then(({ data: response }) => {
         const thumbnailUrl = response.poster_path
           ? `https://image.tmdb.org/t/p/w500/${response.poster_path}`
           : "https://media.gettyimages.com/photos/old-film-perforated-celluloid-picture-id155278297?s=2048x2048";
@@ -28,12 +30,12 @@ const MovieDetails = (props) => {
 
         setMovie(movieLoaded);
         setLoading(false);
-        console.log(movie);
+        console.log(response);
       });
     }
 
     fetchMovie();
-  }, [props.match.params.id]);
+  }, [props.match.params.movie_id]);
 
   return (
     <>    
