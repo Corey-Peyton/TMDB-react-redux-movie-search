@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
+import { Toast } from '../../services/sweetAlert';
 
 import { InputSection, SubmitButton, MoviesSection, ClearButton, QueryInput } from './styles';
 import MovieBlock from '../../components/Movie';
@@ -25,7 +26,10 @@ const Main = () => {
     await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a1279933de606b4374a2c93a1d0127a9&query=${query}`).then((response) => {
       if(!response.data.total_results) {
         setLoading(false);
-        setError('Error occurred!');
+        return Toast.fire({
+          icon: 'error',
+          title: 'No movies found with this query',
+        });
       }
 
       const movies = response.data.results.map((movie) => {
