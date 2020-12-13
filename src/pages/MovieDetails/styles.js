@@ -1,10 +1,11 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const fade = keyframes`
   from {
     transform: scale(0);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -12,7 +13,7 @@ const fade = keyframes`
 `;
 
 export const FullPageContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -30,7 +31,7 @@ export const FullPageContainer = styled.div`
     align-items: center;
 
     i {
-      margin-right: 6px;
+      margin-right: 10%;
     }
 
     &:hover {
@@ -40,113 +41,125 @@ export const FullPageContainer = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 80%;
-  height: 65%;
+  width: 90%;
+  height: 70%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
 
-  @media (max-width: 725px) {
-    height: 80%;
-  }
-`;
-
-export const DetailBlock = styled.aside`
-  background-color: var(--white);
-  padding: 0rem;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.15);
-  animation: ${fade} 1s ease;
-
-  div.title-and-image {
-    display: flex;
-
-    img {
-      width: 100%;
-      height: 215px;
-    }
-
-    h1 {
-      margin-left: 5px;
-      font-size: 1.4rem;
-      font-family: 'Space Mono', monospace;
-      font-weight: 500;
-      text-align: center;
-    }
+  .image {
+    animation: ${fade} 1s ease;
   }
 
-  div.stats {
-    height: 40%;
+  .stats {
+    animation: ${fade} 1s ease;
+  }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  .stat-row {
+    margin-top: 5%;
+    justify-content: center;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
 
-    .stat-row {
-      label {
-        font-weight: 600;
-      }
+  @media (max-width: 1920px) {
+    .image {
+      width: 30%;
+      height: 100%;
 
-      span {
-        font-weight: 400;
+      img {
+        width: 100%;
+        height: 100%;
       }
     }
+    .stats {
+      width: 70%;
+      height: 100%;
+    }
   }
 
-  @media (max-width: 1280px) {
-    width: 49%;
-  }
+  @media (max-width: 1366px) {
+    .image {
+      width: 30%;
+      height: 100%;
 
-  @media (max-width: 725px) {
-    width: 100%;
-    height: 80%;
-    order: 1;
-
-    h1 {
-      margin-bottom: 20px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
-
-    overflow-y: scroll;
-
-    /* Scroll Width */
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    /* Scroll Track */
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-    }
-
-    /* Scroll Handle */
-    &::-webkit-scrollbar-thumb {
-      background: var(--color-primary);
-      border-radius: 10px;
-    }
-
-    /* Scroll handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-      filter: brightness(0.9);
-    }
-
-    div.title-and-image {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    div.stats {
-      align-items: center;
+    .stats {
+      width: 70%;
+      height: 100%;
 
       .stat-row {
-        text-align: center;
+        margin-top: 5%;
       }
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .image {
+      width: 30%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .stats {
+      width: 70%;
+      height: 100%;
+
+      .stat-row {
+        margin-top: 5%;
+
+        h1 {
+          font-size: 26px;
+        }
+
+        h5, .strong {
+          font-size: 13px;
+        }
+
+        p {
+          font-size: 11px;
+        }
+
+        .rating-and-genre {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 780px) {
+    margin-top: -20%;
+    display: block;
+    .image {
+      width: 100%;
+      height: 100%;
+    }
+    .stats {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (max-width: 580px) {
+    display: block;
+    margin-top: -20%;
+    .image {
+      width: 100%;
+      height: 100%;
+    }
+    .stats {
+      width: 100%;
+      height: 100%;
     }
   }
 `;

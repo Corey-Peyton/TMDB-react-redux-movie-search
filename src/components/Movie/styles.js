@@ -21,7 +21,6 @@ export const MovieBlock = styled.div`
   animation: ${fade} 1s ease;
 
   div.title-and-image {
-
     img {
       width: 100%;
       height: 60%;
@@ -39,13 +38,15 @@ export const MovieBlock = styled.div`
 
   @media (max-width: 1280px) {
     width: 25%;
-    height: 20%;
+    height: 19%;
   }
 
   @media (max-width: 725px) {
+    width: 30%;
+  }
 
-    div.title-and-image {
-      width: 30%;
-    }
+  @media (max-width: 580px) {
+    width: 100%;
+    height: 5%;
   }
 `;

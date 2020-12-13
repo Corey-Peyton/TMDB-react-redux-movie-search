@@ -6,8 +6,6 @@ const MovieBlock = ( props ) => {
 
   const { id, thumbnailUrl, title } = props.movie;
 
-  console.log('movie',props.movie);
-
   return (
     <MovieBlockStyled>
       <div className="title-and-image">

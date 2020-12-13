@@ -45,7 +45,6 @@ const Main = () => {
       setLoading(false);
       localStorage.setItem('movies', JSON.stringify(movies));
       localStorage.setItem('query', query);
-      console.log(response);
     });
   }
 

@@ -88,7 +88,7 @@ export const InputSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
 
     .label {
       width: 100%;
