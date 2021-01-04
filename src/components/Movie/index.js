@@ -2,22 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MovieBlock as MovieBlockStyled } from './styles';
 
-const MovieBlock = ( props ) => {
-
-  const { id, thumbnailUrl, title } = props.movie;
+const MovieBlock = (props) => {
+  const { id, image, title } = props.movie;
 
   return (
     <MovieBlockStyled>
-      <div className="title-and-image">
-        <img className="img-fluid" src={thumbnailUrl} alt={title} />
-        <div className="stat-row">
-          <h3>
-            <Link to={`/movies/${encodeURIComponent(id)}`}>
-              {title}
-            </Link>
-          </h3>
+      <Link to={`/movies/${encodeURIComponent(id)}`}>
+        <div className="title-and-image">
+          <img className="img-fluid" src={image} alt={title} />
+          <div className="stat-row">
+            <h3>{title}</h3>
+          </div>
         </div>
-      </div>
+      </Link>
     </MovieBlockStyled>
   );
 };

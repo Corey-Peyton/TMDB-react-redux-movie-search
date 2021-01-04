@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
 import { Toast } from '../../services/sweetAlert';
 
 import { InputSection, SubmitButton, MoviesSection, ClearButton, QueryInput } from './styles';
 import MovieBlock from '../../components/Movie';
+
+const DEFAULT_IMG = "https://media.gettyimages.com/photos/old-film-perforated-celluloid-picture-id155278297?s=2048x2048";
+const ENDPOINT_IMG = `https://image.tmdb.org/t/p/w500/`;
+
+function getImage(path) {
+  if (!path) {
+    return DEFAULT_IMG;
+  }
+  return `${ENDPOINT_IMG}/${path}`;
+}
 
 const Main = () => {
   const [error, setError] = useState('');
@@ -23,33 +32,34 @@ const Main = () => {
 
   async function fetchMovies() {
     setLoading(true);
-    await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a1279933de606b4374a2c93a1d0127a9&query=${query}`).then((response) => {
-      if(!response.data.total_results) {
-        setLoading(false);
-        return Toast.fire({
-          icon: 'error',
-          title: 'No movies found with this query',
+    try {
+      await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a1279933de606b4374a2c93a1d0127a9&query=${query}`).then((response) => {
+        if (!response.data.total_results) {
+          setLoading(false);
+          return Toast.fire({
+            icon: 'error',
+            title: 'No movies found with this query',
+          });
+        }
+
+        const movies = response.data.results.map((movie) => {
+          return {
+            id: movie.id,
+            title: movie.title,
+            image: getImage(movie.poster_path),
+            rating: movie.vote_average,
+          };
         });
-      }
 
-      const movies = response.data.results.map((movie) => {
-        const thumbnailUrl = movie.poster_path
-          ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-          : "https://media.gettyimages.com/photos/old-film-perforated-celluloid-picture-id155278297?s=2048x2048";
-
-        return {
-          id: movie.id,
-          title: movie.title,
-          thumbnailUrl,
-          rating: movie.vote_average,
-        };
+        setMovies(movies);
+        localStorage.setItem('movies', JSON.stringify(movies));
+        localStorage.setItem('query', query);
       });
-
-      setMovies(movies);
+    } catch(error) {
+      setError('Something went wrong');
+    } finally {
       setLoading(false);
-      localStorage.setItem('movies', JSON.stringify(movies));
-      localStorage.setItem('query', query);
-    });
+    }
   }
 
   function handleChange(e) {
@@ -90,7 +100,7 @@ const Main = () => {
               The <span className="logo-blue">right place</span> for you to find movies.
             </h2>
           </div>
-          
+
           <form onSubmit={handleSubmit}>
             <div className="label">
               <label htmlFor="movie">Type movie name, director etc...</label>
@@ -134,8 +144,8 @@ const Main = () => {
               <h1>No movies yet, you need to search for some movies!</h1>
             </div>
           ) : (
-            movies.map((movie, index) => <MovieBlock movie={movie} key={index} />)
-          )}
+              movies.map((movie, index) => <MovieBlock movie={movie} key={index} />)
+            )}
         </div>
       </MoviesSection>
     </>

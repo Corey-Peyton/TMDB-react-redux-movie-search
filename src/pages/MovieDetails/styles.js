@@ -12,10 +12,31 @@ const fade = keyframes`
   }
 `;
 
+const fadeFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const fadeFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 export const FullPageContainer = styled.div`
   width: 100%;
   height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--white-darker);
@@ -160,6 +181,51 @@ export const Container = styled.div`
     .stats {
       width: 100%;
       height: 100%;
+    }
+  }
+`;
+
+export const MoviesSection = styled.section`
+  display: flex;
+  justify-content: center;
+  background: transparent;
+
+  .container {
+    width: width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .no-movies {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 45vh;
+      max-width: 460px;
+      animation: ${fadeFromLeft} 1.4s ease;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 500;
+      color: var(--color-primary);
+      animation: ${fadeFromRight} 1.4s ease;
+    }
+  }
+
+  @media (max-width: 1125px) {
+    .container {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .no-movies h1 {
+      font-size: 1.2rem;
     }
   }
 `;
