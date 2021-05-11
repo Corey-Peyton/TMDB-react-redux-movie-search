@@ -87,6 +87,10 @@ const Main = () => {
     localStorage.removeItem('query');
   }
 
+  const unknownMethod = () => {
+    throw new Error("This is unknown method");
+  }
+
   return (
     <>
       <InputSection>
@@ -126,6 +130,10 @@ const Main = () => {
               <SubmitButton loading={loading ? 'loading' : undefined} type="submit">
                 {loading ? <i className="fas fa-spinner"></i> : <i className="fas fa-search"></i>}
               </SubmitButton>
+
+              <button onClick={unknownMethod}>
+                Break everything
+              </button>
             </div>
 
             {error && (
