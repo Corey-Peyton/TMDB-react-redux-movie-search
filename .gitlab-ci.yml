@@ -1,0 +1,23 @@
+stages:
+  - build
+  - test
+
+build_process:
+  stage: build
+  script:
+    - apt-get update
+    - apt-get install
+    - apt-get install -y nodejs
+    - apt-get install -y npm
+    - npm install
+    - npm run build
+
+run_unit_tests:
+  stage: test
+  script:
+    - apt-get update
+    - apt-get install
+    - apt-get install -y nodejs
+    - apt-get install -y npm
+    - npm install
+    - npm run test
