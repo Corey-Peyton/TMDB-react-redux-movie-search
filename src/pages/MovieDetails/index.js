@@ -21,7 +21,6 @@ const MovieDetails = (props) => {
   const [movie, setMovie] = useState({});
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [offset, setOffset] = useState(1);
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
@@ -63,7 +62,7 @@ const MovieDetails = (props) => {
     async function fetchRecommendations() {
       setLoading(true);
       try {
-        await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movie_id}/recommendations?api_key=a1279933de606b4374a2c93a1d0127a9&language=en-US&page=${offset}`)
+        await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movie_id}/recommendations?api_key=a1279933de606b4374a2c93a1d0127a9&language=en-US&page=1`)
           .then((res) => {
 
             const recommendationLoaded = res.data.results.map((recommendation) => ({
@@ -82,7 +81,7 @@ const MovieDetails = (props) => {
 
     fetchMovie();
     fetchRecommendations();
-  }, []);
+  }, [props.match.params.movie_id]);
 
   if (error) {
     return (
