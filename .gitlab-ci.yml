@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - deploy
 
 build_process:
   stage: build
@@ -21,3 +22,8 @@ run_unit_tests:
     - apt-get install -y npm
     - npm install
     - npm run test
+
+deploying:
+  stage: deploy
+  script:
+    - sldfsldkfjl
